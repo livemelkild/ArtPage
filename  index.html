@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Her henter jeg src fra internett for å kunne få jQuery til å fungere-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+/* Her er det brukt jQuery for å få dokumentasjonen til å vises ved et klikk.
+#flip er ID-en til "vis dokumentasjon" og #panel er ID-en til dokumentasjonen.*/
+$(document).ready(function(){
+  $("#flip").click(function(){
+    $("#panel").slideToggle("slow"); /* slideToggle ble brukt for å få #panel til å gå vises/skules ved klikk*/
+  });
+});
+</script>
+  </head>
+<meta charset="utf-8">
+<title>🍎Adams eple</title>
+
+<!--Her ligger all CSS for prosjektet. Det blir kallt på klasser for å endre bakgrunnsafarge og implementer GRID.
+    For å endre på tekst samt tekst plassering refererer jeg til ulike størrelser på tekst som f. eks h4
+    Canvas og SVG blir også kaldt på separat for å kunne endre bagrunnensfargen-->
+<style type="text/css">
+  body{
+    background-color: #d6e0f0;
+  }
+  .top-text{
+    background-color: #d6e0f0;
+  }
+  .text{
+    display: grid;
+  }
+  .text-canvas{
+    grid-row: 1/2;
+  }
+  .text-svg{
+    grid-row: 1/2;
+  }
+  .artist{
+    display: grid;
+  }
+
+  h4 {
+    color: #056676;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+  }
+  h1 {
+    color: #81b214;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    text-decoration: underline;
+  }
+  canvas{
+    border: 2px solid #056676;
+    background-color: red;
+    background-image: linear-gradient(#056676, #81b214);
+  }
+  svg {
+    border: 2px solid #056676;
+    background-color: red;
+    background-image: linear-gradient(#056676, #81b214);
+    text-align: center;
+  }
+  .div-box{
+    display: grid;
+  }
+  .div-svg {
+    text-align: center;
+    grid-row: 1/2;
+  }
+  .div-canvas {
+    grid-row: 1/2;
+    text-align: center;
+  }
+
+  #panel, #flip {
+    padding: 5px;
+    text-align: center;
+    background-color: red;
+    background-image: linear-gradient(#056676, #81b214);
+    border: solid 4px #056676;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  #panel {
+    padding: 20px;
+    display: none;
+  }
+  /* Dette er logikken til det fallende eple til SVG-element*/
+  svg:hover .apple{
+    animation: fallingapple 6s ;
+    animation-fill-mode: forwards;
+  }
+  @keyframes fallingapple {
+    0%{
+      transform:translate(0px,1px);
+    }
+    100%{
+      transform:translate(0px,220px);
+    }
+  }
+    </style>
+  </head>
+  <body>
+    <div class="top-text">
+      <h1>ADAMS EPLE</h1>
+    </div>
+    <div class="artist">
+      <h4>Kunstverket er laget av Eva Edenes som er en kunstner fra byen Mytologien.
+        Hun levde fra år null og var et av de første menneskene. Kunstverket heter “Adams Eple”
+        og beskriver Edens hage med det fallende eple i sentrum. Edens hage er et magisk sted,
+        og Eva ønsker å beskrive det gjennom naturlige og unaturlige farger på hagen.
+        Eva sin kunst kjennetegner ofte situasjoner fra Edens hage og hun beskriver
+        kunsten sin som enkel, men virkningsfull.
+        <br>
+        </h4>
+    </div>
+
+    <!-- Her lages det en felles box for canvas og svg elementene. Deretter blir det laget en separat box for canavas
+          elementet og for SVG elemetet. Slik kan jeg bruke Grid i css for inndeling av plass. -->
+    <div class="div-box">
+      <!-- Her lager jeg en sparat box for canavas elementet-->
+      <div class="div-canvas">
+        <canvas height="450" width="600"></canvas> <!-- Størrelse på boksen-->
+        <script src="canvas_last.js"></script> <!-- Her kaller jeg på canvas filen min som er en javascript vil. Der har jeg tegnet
+         alle elementene til canavas boksen.-->
+      </div>
+
+      <!-- Her lager jeg en sparat box for SVG elementet-->
+      <div class="div-svg">
+        <svg cx= "600" cy= "200" width="600" height="450"> <!-- Størrelse på boksen-->
+          <!-- stammen: -->
+          <rect id=rect x="200" y="140" width="30" height="300" style="fill:brown;stroke:black;stroke-width:1;" />
+          <!-- bladene på treet: -->
+          <svg class = "tree">
+           <circle cx="180" cy="160" r="90" stroke="black" stroke-width="1" fill="green" />
+            <circle cx="260" cy="160" r="90" stroke="black" stroke-width="1" fill="green" />
+            <circle cx="220" cy="110" r="90" stroke="black" stroke-width="1" fill="green"/>
+          </svg>
+          <!-- BLOMSTEN:-->
+        <svg>
+            <rect  x = "427" y = "340" width="8" height="90" style="fill:red;stroke:black;stroke-width:1;" />
+            <circle id="flower"cx = "430" cy = "330" r = "30" stroke="pink" stroke-width="5" fill="purple" />
+        </svg>
+        <!-- Animasjonen til endring av farge på blomsten:-->
+          <animate xlink:href="#flower" attributeName="fill" values="red" dur="1s" begin="click"
+              fill="freeze"/>
+
+          <!-- EPLET: -->
+          <g class="apple">
+            <rect id = "line" x="190" y="170" width="5" height="20" style="fill:black;stroke:black;stroke-width:1;" />
+            <circle id = "circle" cx="195" cy="200" r="20" stroke="black" stroke-width="1" fill="red" />
+          </g>
+
+      </svg>
+    </div>
+  </div>
+
+<!-- Forklarer hvilken tegning som er canvas og hvilken tegning som er SVG:-->
+
+  <div class="text">
+    <div class="text-canvas">
+      <h4>CANVAS</h4>
+    </div>
+    <div class="text-svg">
+      <h4>SVG</h4>
+    </div>
+
+  </div>
+  <h4>Ta over treet så faller eplet og
+  klikk på blomsten så endrer den sin fargefremkomst</h4>
+
+  <!--DOKUMENTASJON. Jeg bruker jquery fra skcript øverst for å få denne funskjonen til å bevege seg.-->
+    <div id="flip"><p><b>Klikk for å lese dokumentasjon</b></p></div>
+    <div id="panel">
+
+
+      <li> <b> Gi en beskrivelse av hvordan du har brukt CCS-grid og Flexbox-layout, forklar dine valg.</b></li>
+      <ul>
+
+          Jeg valgte å bruke CSS-grid i prosjektet mitt, fordi det ga meg mulighet til å
+          plassere elementene der jeg ønsket de skulle være.
+          Selv om det hadde gått fint å bruke Flexbox, hadde jeg hørt anbefalinger om Grid og tok derfor i bruk det.
+          Jeg brukte Grid til å plassere tekst som skulle ligge på samme rad,
+          samt bilder som skulle stå ved siden av hverandre.
+          Ved å først samle elementene/teksten med div,
+          kunne jeg deretter med Grid gi canvas-boksen halvparten av siden og SVG-boksen
+          den andre halvparten. Slik ville boksene tilpasse seg ved krymping og utvidelse av vinduet.
+
+      </ul>
+
+      <li> <b> Gi en beskrivelse av hvordan du har brukt HTML canvas og SVG i HTML.</b></li>
+      <ul>
+
+          For å tegne figurene i SVG bruke jeg circle og rect. Siden det var lite kode valgte
+          jeg å skrive SVG-elementene inne i HTML-filen. Fargen på elementene bestemte jeg i SVG,
+          mens jeg brukte CSS for farge av bakgrunn samt logikk for når jeg hovret over.
+          Logikken for bytting av farge ved klikk brukte jeg funksjonen animate, som jeg skrev under SVG-en i body.
+          Group (g) ble brukt for å samle elementene og jeg ga dem ID for å kunne implementere logikk til bestemte deler.
+
+          <br>
+          <br>
+
+          I HTML-filen har jeg et canvas element som spesifiserer størrelse på boksen.
+          Jeg lenker deretter til en egen canvas-fil hvor jeg har alle tegningene mine.
+          For å kunne implementere logikk ved hover over lagde jeg en funksjon for hvert
+          element som ble tegnet og samlet alle under drawCanvas().
+          For å få eple til å falle lagde jeg en animate() funksjon som kallet på funksjonen
+          clear() og drawCanvas(). Clear() funksjonen sletter hele tegningen.
+          For hver gang det ble tegnet på nytt ble y-koordinaten til eple endret.
+          Dette skapte animasjonen. “Onclick” og  if-funksjon inne drawFlower()
+          ble brukt for å kunne endre farge på blomsten ved klikk på canvas-boksen.
+
+      </ul>
+
+      <li> <b> Gi en kort beskrivelse av hvordan du har brukt JQuery.</b></li>
+      <ul>
+
+          Hentet inn src med jQuery i script i HTML. Jeg brukte jQuery til canvas.js filen,
+          samt for klikking for dokumentasjon. SlideToggle("slow") gjorde det mulig å få opp
+          dokumentasjonen ved klikk, og fjerne den igjen ved nytt klikk.
+          Jeg brukte ikke jQuery for logikk til SVG, fordi jeg følte jeg kunne løse det på andre måter.
+          Om jeg skulle gjort prosjektet igjen hadde jeg nok brukt jQuery til all logikk,
+          ettersom det var et godt verktøy.
+
+      </ul>
+      <li> <b> Gi en kort beskrivelse av hvordan du har utført cross-browser testing.</b></li>
+      <ul>
+
+        Testingen ble gjort manuelt ved at jeg åpnet nettsiden med siste versjon av Crome og Safari.
+        Utseende er likt og oppførselen er lik i begge nettleserne, bort sett fra når man tar vekk musen fra SVG-boksen i Safari så stopper eple,
+        mens i Crome går den til toppen av treet igjen.
+        Alle interaksjonen ble ellers som forventet.
+      </ul>
+    </ul>
+
+    <li> <b> Informasjonskilder: </b></li>
+    <ul>
+      <td><p><em> <strong><a href="https://www.udemy.com/course/the-complete-web-development-bootcamp/learn/lecture/12644262#overview">Udemy</a></strong> </em></p>
+      <td><p><em> <strong><a href="https://www.youtube.com/watch?v=EO6OkltgudE&t=566s">Tutorial Canvas</a></strong> </em></p>
+      <td><p><em> <strong><a href="https://colorhunt.co/">Colors</a></strong> </em></p>
+      <td><p><em> <strong><a href="https://www.w3schools.com/jquery/jquery_fade.asp"> Fade function - w3schools</a> </strong> </em></p>
+      <td><p><em> <strong><a href="https://www.w3schools.com/">w3schools</a></strong> </em></p>
+
+
+      Jeg brukte w3schools mye for CSS, SVG og for HTML, ettersom det var nytt for meg.
+
+    </ul>
+
+    </div>
+
+  </body>
+</html>
