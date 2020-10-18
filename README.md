@@ -6,6 +6,8 @@ Ved å hovre over eplet kan du får det til å falle ned fra stammen. Ved å kli
 Denne nettsiden var et morsomt prosjekt som introduserte meg til javascript, jQuery, SVG og Canvas. 
 Føl deg fri til å teste ut nettside Adams eple!
 
+![image](https://user-images.githubusercontent.com/69898083/96386149-1088c780-1199-11eb-8074-7eeb060a7d94.png)
+
 ## Dokumentasjon
 
 ### CSS-Grid
