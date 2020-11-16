@@ -1,4 +1,4 @@
-# ArtPage - Adams Eple
+# ArtPage - Adams Eple (intro-prosjekt)
 
 Nettsiden er et morsomt lite galleri, som er en viss interaktivtitet. 
 Ved å bruke teknologiene SVG og Canvas fremstiller jeg to like bilder. 
