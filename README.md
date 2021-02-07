@@ -1,6 +1,6 @@
 # ArtPage - Adams Eple (intro-prosjekt)
 
-Nettsiden er et morsomt lite galleri, som er en viss interaktivtitet. 
+Nettsiden er et morsomt lite galleri, som har en viss interaktivtitet. 
 Ved å bruke teknologiene SVG og Canvas fremstiller jeg to like bilder. 
 Ved å hovre over eplet kan du får det til å falle ned fra stammen.  Ved å klikke på blomsten endrer den sin fargefremkomst.
 <b>Denne nettsiden var et morsomt prosjekt som introduserte meg til javascript, jQuery, SVG og Canvas. </b>
